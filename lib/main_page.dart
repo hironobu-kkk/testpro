@@ -7,9 +7,8 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<MainModel>(
-      create: (_) => MainModel(),
-      child: Scaffold(
+    final model02 = context.read<MainModel>();
+    return Scaffold(
         appBar: AppBar(
           title: Text("test"),
         ),
@@ -31,18 +30,14 @@ class MainPage extends StatelessWidget {
             ],
           ),
         ),
-        floatingActionButton: Consumer<MainModel>(
-            builder: (context, model, child) {
-            return FloatingActionButton(
-              onPressed: (){
-                model.incrementCounter();
-              },
+        floatingActionButton: FloatingActionButton(
+              onPressed: () => model02.incrementCounter(),
               tooltip: 'Increment',
               child: const Icon(Icons.add),
-            );
-          }
-        ), // This trailing comma makes auto-formatting nicer for build methods.
-      ),
-    );
+            ),
+
+         // This trailing comma makes auto-formatting nicer for build methods.
+      );
+
   }
 }
